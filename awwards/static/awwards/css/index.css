@@ -1,0 +1,128 @@
+body{
+background-color:#f4f7f6;
+}
+.container{
+    width: 90%;
+    margin:0 auto;
+}
+
+.container p:nth-child(1){
+    font-size: 1vw;
+    margin: 2% 0;
+    font-weight: 600;
+    color:#080210;
+}
+
+
+.projects{
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px
+}
+.project{
+    width: 30%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap:0;
+}
+.project .image{
+    height: 70%;
+    width: 100%;
+    transition: transform 1s ease-in-out;
+}
+.project .image img{
+    height: 100%;
+    width: 100%
+}
+.project:hover .icons{
+background-color: rgba(0, 0, 0, 0.5);
+display: flex;
+}
+
+.icons{
+    position: absolute;
+    top:0;
+    left:50%;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    justify-content: center;
+    transition: transform 1s ease-in-out;
+    transform: translateX(-50%);
+    height: 70%;
+    width: 100%;
+}
+
+
+.icons a:nth-child(1){
+text-decoration: none;
+color:black;
+padding: 3% 5%;
+border-radius: 30px;
+background-color: white;
+font-size: 1.1vw;
+}
+.icons a:nth-child(2){
+    color:white;
+    text-decoration: none;
+    align-self: flex-end;
+    margin-right: 5%;
+    border: 1px solid white;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: relative;
+    top:20%;
+
+
+    
+}
+.details{
+    background-color: white;
+    padding: 4%;
+    height: 30%;
+}
+
+.country{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    font-weight: 300;
+    font-size: 1vw;
+}
+.country p:nth-child(1){
+    font-weight: 300 !important;
+}
+
+.profile_pic{
+    height: 24px;
+    width: 24px;
+    aspect-ratio: 1 /1 ;
+    border-radius: 50%;
+}
+.dev{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap:10px;
+    padding: 2% 0;
+}
+.dev a {
+    text-decoration: none;
+    color: #080210;
+    font-weight: 300;
+    font-size: 1vw;
+}
+.dev a span{
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.hr{
+    background-color: #dbe0df;
+    height: 1px;
+    width: 100%;
+}

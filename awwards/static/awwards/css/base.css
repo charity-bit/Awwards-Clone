@@ -5,7 +5,153 @@
     box-sizing: border-box;
     
 }
-
+.profile_pic{
+    height: 32px;
+    width: 32px;
+    aspect-ratio: 1 /1 ;
+    border-radius: 50%;
+}
 html{
     font-family: 'Poppins', sans-serif;
+}
+
+.search-form{
+    display: none;
+    width: 90%;
+    display: none;
+    padding: 0;
+    margin-left: 2%;  
+    animation: scaleIn 1s ease 0s 1 normal forwards;  
+}
+form a {
+    color:white;
+    background-color: #080210;
+
+}
+.search-form input{
+    padding:5px 2%;
+    border: none;
+    height: 100%;
+    background-color: #f4f7f6 ;
+    outline: none;
+    width: 100%;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    background-color: none;
+}
+
+.search-form input:focus{
+    background-color:#f4f7f6 ;
+   
+}
+.close{
+    background-color: #080210 !important;
+    padding:5px 0;
+    width: 5%;
+    font-size: 2vw;
+    color: #fff;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    justify-self: flex-end;
+}
+.close a{
+    text-decoration: none;
+    color:white;
+    text-transform: uppercase;
+}
+.header{
+    display: flex;
+    align-items: center;
+    background-color: #f4f7f6;
+    padding: 0;
+    position: sticky;
+}
+.menu{
+    color:#080210;
+    padding-left: 2%;
+
+}
+.menu a {
+    color:#080210;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap:4px;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    height: 100%;
+    
+   
+}
+.logo svg{
+    height: 2vw;
+    width: 15vw;
+    animation: scaleIn 1s ease 0s 1 normal forwards;
+  
+}
+.search{
+    margin-left: 1%;
+    color:#080210;
+   
+
+}
+
+.profile{
+    display: flex;
+    gap:10px;
+    align-items: center;
+    padding-right: 2%;
+    height: 100%;
+    animation: scaleIn 1s ease 0s 1 normal forwards;
+}
+.prof{
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+.prof p{
+    text-transform: uppercase;
+    font-family: 300;
+    font-size: .9vw;
+}
+.submit{
+    height: 100% !important;
+    background-color: #080210 !important;
+    padding:17px 0;
+    display: flex;
+    animation: scaleIn 1s ease 0s 1 normal forwards;
+    align-items: center;
+    justify-content: center;
+    width: 12%;
+    text-align: center;
+    font-size: 1vw;
+}
+
+.profile a ,.submit a{
+  text-decoration: none;
+  color: white;
+  background-color: #080210;
+  height: 100%;
+  text-transform: uppercase;
+ 
+}
+@keyframes scaleIn {
+	0% {
+		
+        transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
 }

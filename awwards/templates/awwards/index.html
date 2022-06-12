@@ -1,1 +1,51 @@
-<h1>HOME</h1>
+{% extends 'awwards/base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'awwards/css/index.css' %}">
+{% endblock %}
+
+
+<!-- body -->
+{% block content %}
+
+<hr>
+<div class="container">
+ <p>Sites to See</p>
+
+
+ <div class="projects">
+    {% for project in projects %}
+    <div class="project">
+     <figure class="image">
+      <img src="{{project.image.url}}" alt="">
+     </figure>
+     <div class="icons">
+        <a href="#">Vote Now</a>
+        <a href="{{project.url}}"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
+     </div>
+     <div class="details">
+        <p>{{project.sitename}}</p>
+         <div class="country">
+            <p>From {{project.country.name}}</p>
+            <p>{{project.date_submited | date:'F d, Y' }}</p>
+        </div>
+        <div class="hr"></div>
+        <div class="dev">
+            <a href=""><img src="{{project.user.profile.profile_pic.url}}" alt="" class="profile_pic"></a>
+            <a href="#">By <span>{{project.user.username}}</span>
+            </a>
+           
+        </div>
+     </div>
+
+    </div>
+
+    {% endfor %}
+ </div>
+
+
+   
+</div>
+{% endblock %}
+

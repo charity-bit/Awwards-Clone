@@ -2,18 +2,17 @@ from django.shortcuts import render,redirect
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 from django.urls import reverse_lazy
 from .forms import CustomAuthForm,RegistrationForm
+
+from .models import Project,User,Profile
 
 from django.views.generic.edit import FormView
 
 
 # Create your views here.
-
-
-def home(request):
-    return render(request,'awwards/index.html')
-
 
 
 class CustomLoginView(LoginView):  
@@ -45,5 +44,16 @@ class RegisterView(FormView):
         
         return super(RegisterView,self).get(*args,**kwargs)
 
+
+
+@login_required(login_url='/')
+def home(request):
+    projects = Project.objects.all().order_by('-date_submited')
+    user = request.user
+    context = {
+        'projects':projects,
+        'user':user
+    }
+    return render(request,'awwards/index.html',context)
 
 
