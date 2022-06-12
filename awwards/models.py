@@ -31,7 +31,8 @@ class Project(models.Model):
     # designer details
     designer_name = models.CharField(max_length=100)
     designer_url = models.URLField(max_length=150)
-    date_submited = models.DateTimeField(default=timezone.now,null=True) 
+    date_submited = models.DateTimeField(default=timezone.now,null=True)
+    rank = models.BigIntegerField(null=True) 
     country = CountryField()
 
 class Vote(models.Model):
