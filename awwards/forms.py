@@ -10,8 +10,8 @@ from django import forms
 class CustomAuthForm(AuthenticationForm):  
     def __init__(self, *args, **kwargs):
         super(CustomAuthForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'placeholder':'username'})
-        self.fields['password'].widget.attrs.update({'placeholder':'password'})
+        self.fields['username'].widget.attrs.update({'placeholder':'Username'})
+        self.fields['password'].widget.attrs.update({'placeholder':'Password'})
         
 
     
@@ -23,8 +23,8 @@ class RegistrationForm(UserCreationForm):
     
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['email'].widget.attrs.update({'placeholder':'email'})
-        self.fields['username'].widget.attrs.update({'placeholder':'username'})
-        self.fields['password1'].widget.attrs.update({'placeholder':'password'})
-        self.fields['password2'].widget.attrs.update({'placeholder':'confirm password'})
+        self.fields['email'].widget.attrs.update({'placeholder':'E-mail'})
+        self.fields['username'].widget.attrs.update({'placeholder':'Username'})
+        self.fields['password1'].widget.attrs.update({'placeholder':'Password'})
+        self.fields['password2'].widget.attrs.update({'placeholder':'Repeat Password'})
 
