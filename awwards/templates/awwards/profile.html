@@ -1,0 +1,128 @@
+{% extends 'awwards/base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'awwards/css/profile.css' %}">
+{% endblock %}
+
+<!-- body -->
+{% block content %}
+<div class="hr"></div>
+<div class="container">
+   <!-- user profile -->
+     <div class="prof-cont">
+      <img src="{{user.profile.profile_pic.url}}" alt="" class="profile_p">
+      <p>{{user.username}}</p>
+     </div>
+     <div class="hr"></div>
+     <!-- end of user profile -->
+     <div class="project-toggler">  
+        <p id="projects">{{projects.count}}{% if projects.count > 1 %} Projects {% else %} Project {% endif %} </p>
+        <p id='voted'>{{voted_projects| length}}{% if voted_projects.count > 1 %} Votes {% else %} Vote {% endif %} </p>
+     </div>
+     <div class="items">
+      <div class="projects">
+         {% for project in projects %}
+         <div class="project">
+          <figure class="image">
+           <img src="{{project.image.url}}" alt="">
+          </figure>
+          <div class="icons">
+            {% if request.user != user %}
+             <a href="#">Vote Now</a>
+             {% endif %}
+             
+             <a href="{{project.url}}"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
+          </div>
+          <div class="details">
+             <p>{{project.sitename}}</p>
+              <div class="country">
+                 <p>From {{project.country.name}}</p>
+                 <p>{{project.date_submited | date:'F d, Y' }}</p>
+             </div>
+             <div class="hr"></div>
+             <div class="dev">
+                 <a href=""><img src="{{project.user.profile.profile_pic.url}}" alt="" class="profile_pic"></a>
+                 <a href="#">By <span>{{project.user.username}}</span>
+                 </a>
+                
+             </div>
+          </div>
+     
+         </div>
+     
+         {% endfor %}
+      </div>
+
+      <div class="voted">
+         {% for project in voted_projects %}
+         <div class="project">
+          <figure class="image">
+           <img src="{{project.image.url}}" alt="">
+          </figure>
+          <div class="icons">
+            {% if request.user != user %}
+             <a href="#">Vote Now</a>
+             {% endif %}
+             
+             <a href="{{project.url}}"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
+          </div>
+          <div class="details">
+             <p>{{project.sitename}}</p>
+              <div class="country">
+                 <p>From {{project.country.name}}</p>
+                 <p>{{project.date_submited | date:'F d, Y' }}</p>
+             </div>
+             <div class="hr"></div>
+             <div class="dev">
+                 <a href=""><img src="{{project.user.profile.profile_pic.url}}" alt="" class="profile_pic"></a>
+                 <a href="#">By <span>{{project.user.username}}</span>
+                 </a>
+                
+             </div>
+          </div>
+     
+         </div>
+     
+         {% endfor %}
+      </div>
+     </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+   projects = document.querySelector('.projects')
+   voted = document.querySelector('.voted')
+   $('#voted').on('click',function(e){
+      console.log(e)
+      projects.style.display = 'none';
+      voted.style.display = 'flex';
+      e.target.style.fontWeight = '600'
+      e.target.parentElement.firstElementChild.style.fontWeight = '300'
+      
+   })
+   $('#projects').on('click',function(e){
+      projects.style.display = 'flex';
+      voted.style.display = 'none';
+      e.target.style.fontWeight = '600'
+      e.target.parentElement.lastElementChild.style.fontWeight = '300'
+   })
+   
+})
+</script>
+
+
+
+{% endblock %}
+

@@ -112,6 +112,9 @@ nav{
     align-items: center;
     padding-right: 2%;
     height: 100%;
+    color: #080210;
+    text-decoration: none;
+    cursor: pointer;
     animation: scaleIn 1s ease 0s 1 normal forwards;
 }
 .prof{

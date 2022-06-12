@@ -10,5 +10,6 @@ urlpatterns = [
 
     
     path('home/',views.home,name='home'),
+    path('profiel/<str:username>/',views.profile,name='profile')
 
 ]
