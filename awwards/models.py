@@ -1,3 +1,49 @@
 from django.db import models
+from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
+# from .models import Category,Tags
+from django_countries.fields import CountryField
+from django.utils import timezone
 
-# Create your models here.
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    profile_pic = CloudinaryField('profile_image',default='https://res.cloudinary.com/dvhid4k2j/image/upload/v1654654901/png_rxb8cy.jpg')
+    bio = models.CharField(max_length=150,blank=True)
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=150)
+
+class Tags(models.Model):
+    name = models.CharField(max_length=150)
+
+
+class Project(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    sitename = models.CharField(max_length=100)
+    url = models.URLField(max_length=150)
+    description = models.TextField()
+    categories = models.ManyToManyField(Category,related_name='categories')
+    tags = models.ManyToManyField(Tags,related_name='tags') 
+    Technologies = models.TextField(null=True,blank=True)
+    # designer details
+    designer_name = models.CharField(max_length=100)
+    designer_url = models.URLField(max_length=150)
+    date_submited = models.DateTimeField(default=timezone.now,null=True) 
+    country = CountryField()
+
+class Vote(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    average_score = models.DecimalField(max_digits=2,decimal_places=2)
+
+
+    
+
+
+
+
+
+    

@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+import cloudinary
+import cloudinary.api
+import cloudinary.uploader
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'awwards.apps.AwwardsConfig',
+    'cloudinary',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
@@ -76,10 +82,21 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'awwards',
+        'USER': 'hp',
+        'PASSWORD':'qwertyip',
     }
 }
+
+
+cloudinary.config( 
+  cloud_name = 'dvhid4k2j', 
+  api_key ='538353386825468', 
+  api_secret = 'CtiIbnY_b2iv5HjDO4LKwTAZxN8'
+)
+
+
 
 
 # Password validation
