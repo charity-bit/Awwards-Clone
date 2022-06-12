@@ -7,7 +7,10 @@
 
 <!-- body -->
 {% block content %}
+
+
 <div class="hr"></div>
+
 <div class="container">
    <!-- user profile -->
      <div class="prof-cont">
@@ -18,7 +21,7 @@
      <!-- end of user profile -->
      <div class="project-toggler">  
         <p id="projects">{{projects.count}}{% if projects.count > 1 %} Projects {% else %} Project {% endif %} </p>
-        <p id='voted'>{{voted_projects| length}}{% if voted_projects.count > 1 %} Votes {% else %} Vote {% endif %} </p>
+        <p id='voted'>{{voted_objects| length}}{% if voted_objects.count > 1 %} Votes {% else %} Vote {% endif %} </p>
      </div>
      <div class="items">
       <div class="projects">
@@ -29,10 +32,10 @@
           </figure>
           <div class="icons">
             {% if request.user != user %}
-             <a href="#">Vote Now</a>
+             <a href="#" class='vote'>Vote Now</a>
              {% endif %}
              
-             <a href="{{project.url}}"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
+             <a href="{{project.url}}" class="share"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
           </div>
           <div class="details">
              <p>{{project.sitename}}</p>
@@ -55,40 +58,40 @@
       </div>
 
       <div class="voted">
-         {% for project in voted_projects %}
-         <div class="project">
+         {% for project in voted_objects %}
+        
+          <div class="project">
           <figure class="image">
-           <img src="{{project.image.url}}" alt="">
+           <img src="{{project.project.image.url}}" alt="">
           </figure>
           <div class="icons">
-            {% if request.user != user %}
-             <a href="#">Vote Now</a>
-             {% endif %}
-             
-             <a href="{{project.url}}"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
+            <a class="score">{{project.average_score}}</a>
+             <a href="{{project.project.url}}" class="share"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
           </div>
           <div class="details">
-             <p>{{project.sitename}}</p>
+             <p>{{project.project.sitename}}</p>
               <div class="country">
-                 <p>From {{project.country.name}}</p>
-                 <p>{{project.date_submited | date:'F d, Y' }}</p>
+                 <p>From {{project.project.country.name}}</p>
+                 <p>{{project.project.date_submited | date:'F d, Y' }}</p>
              </div>
              <div class="hr"></div>
              <div class="dev">
-                 <a href=""><img src="{{project.user.profile.profile_pic.url}}" alt="" class="profile_pic"></a>
-                 <a href="#">By <span>{{project.user.username}}</span>
+                 <a href=""><img src="{{project.project.user.profile.profile_pic.url}}" alt="" class="profile_pic"></a>
+                 <a href="#">By <span>{{project.project.user.username}}</span>
                  </a>
                 
              </div>
           </div>
      
          </div>
-     
          {% endfor %}
+       
       </div>
      </div>
 
 </div>
+
+
 
 {% endblock %}
 

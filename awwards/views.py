@@ -68,21 +68,12 @@ def profile(request,username):
     user = get_object_or_404(User,username = username)
     projects = Project.objects.filter(user=request.user)
 
-    voted_objects = Vote.objects.filter(user = user).order_by('-date_voted')
-    voted_projects = []
-
-    for project in Project.objects.all():
-        for voted_project in voted_objects:
-            if project.id == voted_project.project.id:
-                voted_projects.append(project)
-
-   
-
-
+    voted_objects = Vote.objects.filter(user = user).order_by('-date_voted').all()
+    
 
     context={
         'projects':projects,
-        'voted_projects':voted_projects,
+        'voted_objects':voted_objects,
         'user':user
     }
 

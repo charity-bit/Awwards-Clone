@@ -53,9 +53,16 @@ body{
         height: 70%;
         width: 100%;
     }
+    .score{
+        font-weight: 600;
+        color: #fff !important;
+        font-size: 1.5vw;
+        margin-bottom: 2%;
+    }
+
     
     
-    .icons a:nth-child(1){
+    .vote{
     text-decoration: none;
     color:black;
     padding: 3% 5%;
@@ -63,10 +70,10 @@ body{
     background-color: white;
     font-size: 1.1vw;
     }
-    .icons a:nth-child(2){
+    .share{
         color:white;
         text-decoration: none;
-        align-self: flex-end;
+        /* align-self: center; */
         margin-right: 5%;
         border: 1px solid white;
         height: 32px;
@@ -76,10 +83,7 @@ body{
         justify-content: center;
         border-radius: 50%;
         position: relative;
-        top:20%;
     
-    
-        
     }
     .details{
         background-color: white;
@@ -153,3 +157,4 @@ body{
     font-weight: 600;
     cursor: pointer;
 }
+

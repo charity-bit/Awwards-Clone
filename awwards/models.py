@@ -60,13 +60,13 @@ class Project(models.Model):
 
 class Vote(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE,related_name='vote')
     average_score = models.DecimalField(max_digits=4,decimal_places=2)
     date_voted = models.DateTimeField(default=timezone.now)
 
 
-    def __str__(self) -> str:
-        return f'{self.user.username}'
+    def __str__(self):
+        return f'{self.average_score}'
 
     
 
