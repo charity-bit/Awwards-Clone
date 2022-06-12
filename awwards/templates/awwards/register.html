@@ -1,0 +1,21 @@
+{% extends 'awwards/base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'awwards/css/register.css' %}">
+{% endblock %}
+
+
+<!-- body -->
+{% block content %}
+
+
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="CREATE YOUR ACCOUNT">
+    </form>
+</div>
+{% endblock %}
+

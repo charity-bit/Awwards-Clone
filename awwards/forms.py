@@ -7,8 +7,7 @@ from django import forms
 
 
 
-class CustomAuthForm(AuthenticationForm):
-     
+class CustomAuthForm(AuthenticationForm):  
     def __init__(self, *args, **kwargs):
         super(CustomAuthForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({'placeholder':'username'})
