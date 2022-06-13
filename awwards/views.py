@@ -1,11 +1,14 @@
+from urllib import request
 from django.shortcuts import render,redirect,get_object_or_404
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
+
 from django.urls import reverse_lazy
-from .forms import CustomAuthForm,RegistrationForm
+from .forms import CustomAuthForm,RegistrationForm,ProjectForm
 
 from .models import Project,User,Profile, Vote
 
@@ -79,5 +82,23 @@ def profile(request,username):
 
 
     return render(request,'awwards/profile.html',context)
+
+
+class AddProjectView(LoginRequiredMixin,CreateView):
+    model = Project
+    template_name = 'awwards/submit.html'
+    form_class = ProjectForm
+
+
+    def get_success_url(self):
+        return reverse_lazy('profile',kwargs={
+            'username':self.request.user
+        })
+
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AddProjectView,self).form_valid(form)
+
 
 

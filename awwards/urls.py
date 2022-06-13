@@ -10,6 +10,8 @@ urlpatterns = [
 
     
     path('home/',views.home,name='home'),
-    path('profiel/<str:username>/',views.profile,name='profile')
+    path('profile/<str:username>/',views.profile,name='profile'),
+    path('submit/',views.AddProjectView.as_view(),name='submit')
+
 
 ]

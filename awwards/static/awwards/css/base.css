@@ -69,7 +69,10 @@ input:-webkit-autofill:active{
     align-items: center;
     background-color: #f4f7f6;
     padding: 0;
-    position: sticky;
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
 }
 .menu{
     color:#080210;

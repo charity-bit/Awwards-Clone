@@ -1,0 +1,65 @@
+{% extends 'awwards/base.html' %}
+{% load static %}
+{% load cloudinary %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'awwards/css/submit.css' %}">
+{% endblock %}
+
+
+<!-- body -->
+{% block content %}
+
+
+<div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class="standard">Standard Submission</p>
+          {{form.as_p}}
+          <input value="SUBMIT PROJECT" type="submit">
+        </form>
+    
+
+   
+   
+</div>
+{% endblock %}
+
+
+
+
+{% block scripts %}
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    checkboxes = document.querySelectorAll("#id_tags input[type='checkbox']")
+    checkboxes.forEach(element => {
+        $(element).change(
+           function(){
+            
+            if(this.checked) {
+                label = document.querySelector(`label[for='${element.id}']`)
+                label.classList.add('checked')
+               }else{
+                label.classList.remove('checked')
+             }
+           }
+        )
+  
+    });
+   
+})
+</script>
+
+
+
+{% endblock %}
+
+
