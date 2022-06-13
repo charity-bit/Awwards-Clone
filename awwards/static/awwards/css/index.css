@@ -126,3 +126,33 @@ font-size: 1.1vw;
     height: 1px;
     width: 100%;
 }
+
+
+@media screen and (max-width:500px){
+
+    .prof-cont{
+        
+        padding: 13% 0;
+       
+    }
+    .project{
+        width: 70%;
+        margin: 0 auto;
+      
+    }
+    
+}
+@media screen and (min-width:501px) and (max-width:900px){
+
+    .prof-cont{
+        
+        padding: 13% 0;
+       
+    }
+    .project{
+        width: 47%;
+      
+      
+    }
+
+}

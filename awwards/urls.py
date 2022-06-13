@@ -11,7 +11,8 @@ urlpatterns = [
     
     path('home/',views.home,name='home'),
     path('profile/<str:username>/',views.profile,name='profile'),
-    path('submit/',views.AddProjectView.as_view(),name='submit')
+    path('submit/',views.AddProjectView.as_view(),name='submit'),
+    path('sites/<pk:int>/',views.ProjectDetailsView.as_view(),name='details')
 
 
 ]

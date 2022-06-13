@@ -11,13 +11,13 @@ body{
     .projects{
         display: flex;
         flex-wrap: wrap;
-        gap:20px
+        gap:30px
     }
 
     .voted{
         display: none;
         flex-wrap: wrap;
-        gap:20p
+        gap:20px;
     }
     .project{
         width: 30%;
@@ -160,3 +160,32 @@ body{
     cursor: pointer;
 }
 
+
+@media screen and (max-width:500px){
+
+    .prof-cont{
+        
+        padding: 13% 0;
+       
+    }
+    .project{
+        width: 70%;
+        margin: 0 auto;
+      
+    }
+    
+}
+@media screen and (min-width:501px) and (max-width:900px){
+
+    .prof-cont{
+        
+        padding: 13% 0;
+       
+    }
+    .project{
+        width: 47%;
+      
+      
+    }
+
+}

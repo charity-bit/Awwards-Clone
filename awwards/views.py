@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView,UpdateView,DeleteView
 
 from django.urls import reverse_lazy
 from .forms import CustomAuthForm,RegistrationForm,ProjectForm
+from django.views.generic.detail import DetailView
 
 from .models import Project,User,Profile, Vote
 
@@ -99,6 +100,11 @@ class AddProjectView(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(AddProjectView,self).form_valid(form)
+
+class ProjectDetailsView(LoginRequiredMixin,DetailView):
+    model = Project
+    template_name = 'awwards/project_detail'
+    context_object_name = 'project'
 
 
 
