@@ -12,6 +12,7 @@ urlpatterns = [
     path('home/',views.home,name='home'),
     # path('home/',views.cProjectListView.as_view(),name='home'),
     path('profile/<str:username>/',views.profile,name='profile'),
+    path('update/',views.update,name='update'),
     path('submit/',views.AddProjectView.as_view(),name='submit'),
     
 

@@ -2,10 +2,10 @@
 body{
     background-color: #fcfcfc;
 }
-form{
+.container form{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 70%;
     gap:20px;
     background-color: #f4f7f6;
     margin-top: 7%;
@@ -14,7 +14,7 @@ form{
     margin-right: auto;
     padding: 5%;
 }
-form input,p select,p textarea{
+.container form input,.container p select,p textarea{
     padding:1.5% 2%;
     border: 1px solid #dbe0df;
     outline: none;
@@ -31,13 +31,13 @@ input:-webkit-autofill:active{
 }
 
 
-input{
+.container form input{
     background-color: #fff;
     outline: none;
     font-size: 1vw;
 
 }
-input[type='submit']{
+.container form input[type='submit']{
     padding: 2.5% 2%;
     border: none;
     color: #fff;
@@ -46,14 +46,14 @@ input[type='submit']{
     font-size: 1.2vw;
 
 }
-input[type='submit']:hover{
+.container input[type='submit']:hover{
 background-color: #44b4a6;
 }
 p{
     display: flex;
     justify-content: space-between; 
 }
-p input,p select,p textarea{
+.container p input,p select,p textarea{
     width: 80%;
 }
 #id_tags{
@@ -88,4 +88,67 @@ p input,p select,p textarea{
     color: #111;
     text-align: center !important;
     
+}
+label{
+    font-size: 1vw;
+}
+
+
+@media screen and (max-width:700px) {
+    body{
+        background-color: #f4f7f6;
+    }
+    .container form{
+        width: 100%;
+        margin:0 auto;
+        
+    }
+    .container form input,label{
+        font-size: 2vw !important;
+    
+    }
+    .container form input[type='submit']{
+        font-size: 2vw;
+    }
+   
+    #id_tags{
+        font-size: 1.8vw;
+    }
+    
+    .standard{
+        font-size: 2.5vw;
+           
+    }
+
+}
+
+
+
+
+@media screen and (min-width:701px) and (max-width:900px) {
+    body{
+        background-color: #f4f7f6;
+    }
+    .container form{
+        width: 80%;
+        margin:2% auto;
+        
+    }
+    .container form input,label{
+        font-size: 2vw !important;
+    
+    }
+    .container form input[type='submit']{
+        font-size: 2vw;
+    }
+   
+    #id_tags{
+        font-size: 1.8vw;
+    }
+    
+    .standard{
+        font-size: 2.5vw;
+           
+    }
+
 }

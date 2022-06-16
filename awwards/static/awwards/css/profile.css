@@ -189,17 +189,124 @@ body{
     font-weight: 600;
     cursor: pointer;
 }
+.form-div{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom:0;
+    background-color:rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 1000;
+    animation: fadeIn 1s ease 0s 1 normal forwards;;
+}
+.hide{
+   position: absolute;
+   right:10%;
+   top:10%;
+   background: transparent;
+   color:white;
+   height: 32px;
+   width: 32px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.2vw !important;
+   border-radius: 50%;
+   border: 1px solid white;
+}
+.form{
+    display: flex;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    flex-direction: column;
+    /* align-items: left; */
+    background-color: #f4f7f6;
+    padding: 4% 2%;
+    width: 50%;
+    gap:15px; 
+}
+.form input,.form select{
+    padding:2% 1%;
+}
+.form label {
+    font-size: 1vw;
+}
+.form input[type='submit']{
+    background-color: #49c5b6;
+    border: none;
+    color:white;
+}
+.form input[type='submit']:hover{
+    background-color: #44b4a6;
+}
+.bio{
+    font-size: .8vw;
+    font-weight: 300;
+}
+.uname{
+    font-size: 1.2vw;
+}
+.country-ttl{
+    font-size: 1.3vw;
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
 
 
-@media screen and (max-width:500px){
+@media screen and (max-width:700px){
+    .container{
+        width: 100%;
+        margin:0 auto;
+    }
+    .country-ttl{
+        font-size: 2vw;
+  }
 
     .prof-cont{
-        
         padding: 13% 0;
-       
+    }
+    .form-div form{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .ed,.project-toggler{
+        margin-left: 5%;
+    }
+    .ed button,.ed a{
+        font-size: 2.5vw !important;
+    }
+    .form-div button{
+        font-size: 2.5vw !important;
+    }
+    .form-div label{
+        font-size: 2.5vw;
+    }
+    .bio{
+        font-size: 1.5vw;
+    }
+    .uname{
+        font-size: 2vw;
+    }
+    
+    .projects{
+        width: 100%;
+        margin:0 auto;
+        padding:0
     }
     .project{
-        width: 70%;
+        width: 100%;
         margin: 0 auto;
       
     }
@@ -207,11 +314,12 @@ body{
         font-size: 1.5vw;;
     }
     .vote,.country,.dev a{
-    font-size: 2.1vw;
+    font-size: 2.5vw;
     }
+    
    
 }
-@media screen and (min-width:501px) and (max-width:900px){
+@media screen and (min-width:701px) and (max-width:900px){
 
     .prof-cont{
         
@@ -220,8 +328,14 @@ body{
     }
     .project{
         width: 47%;
-      
-      
+       
+    }
+
+    .score{
+        font-size: 1.5vw;;
+    }
+    .vote,.country,.dev a{
+    font-size: 2.1vw;
     }
 
 }

@@ -75,13 +75,11 @@ input:-webkit-autofill:active{
 }
 .menu{
     color:#080210;
-    padding-left: 2%;
+    margin-left: 2%;
 
 }
 .menu a {
     color:#080210;
-    display: flex;
-    align-items: center;
     text-decoration: none;
     gap:4px;
 }
@@ -161,4 +159,13 @@ nav{
 		transform: scale(1);
 	}
 }
+@media screen and (max-width:700px) {
+    .submit{width:20%}
+    .prof p,.submit a{
+        font-size: 1.7vw;
+    }
 
+    .menu{
+        margin:0 2% !important;
+    }
+}

@@ -6,7 +6,7 @@ background-color:#f4f7f6;
     margin:0 auto;
 }
 
-.container p:nth-child(1){
+.site-ttl{
     font-size: 1vw;
     margin: 2% 0;
     font-weight: 600;
@@ -120,23 +120,51 @@ font-size: 1.1vw;
     height: 2px;
     width: 100%;
 }
+.country-ttl{
+    font-size: 1.2vw;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 1% 0;
+}
 
 
-@media screen and (max-width:500px){
-
+@media screen and (max-width:700px){
+    
+    .container{
+        width:100% !important;
+    }
     .prof-cont{
         
         padding: 13% 0;
        
     }
+    .projects{
+        width:100%;
+    }
     .project{
-        width: 70%;
+        width: 100%;
         margin: 0 auto;
       
     }
+    .site-ttl{
+        font-size: 2.5vw;
+        margin-left: 5%;
+        }
+        .icons a:nth-child(1){
+    
+        font-size: 2.1vw;
+        }
+    
+        .country-ttl{
+              font-size: 2vw;
+        }
+        .country,.dev a {
+        font-size: 1.7vw;
+        }
+    
     
 }
-@media screen and (min-width:501px) and (max-width:900px){
+@media screen and (min-width:701px) and (max-width:900px){
 
     .prof-cont{
         
@@ -148,5 +176,16 @@ font-size: 1.1vw;
       
       
     }
+    .site-ttl{
+         font-size: 1.9vw;
+    }
+    .icons a:nth-child(1){
 
+    font-size: 1.6vw;
+    }
+
+
+    .country,.dev a{
+    font-size: 1.4vw;
+    }
 }

@@ -13,7 +13,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic = CloudinaryField('profile_image',default='https://res.cloudinary.com/dvhid4k2j/image/upload/v1654654901/png_rxb8cy.jpg')
     bio = models.CharField(max_length=150,blank=True)
-
+    country = CountryField(blank=True,null=True)
 
     def __str__(self) -> str:
         return f'{self.user.username}'

@@ -1,5 +1,6 @@
 {% extends 'awwards/base.html' %}
 {% load static %}
+{% load cloudinary %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'awwards/css/profile.css' %}">
@@ -12,15 +13,29 @@
 <div class="hr"></div>
 
 <div class="container">
+   <div class="form-div">
+      <button class="hide">X</button>
+      <form method="post" enctype="multipart/form-data" class="form" id="profile_form">
+         {% csrf_token %}
+         {{form}}
+         <input type="submit" value="update" id="sm">
+      </form>
+      
+
+   </div>
+ 
    <!-- user profile -->
      <div class="prof-cont">
+      {% if request.user == user %}
       <div class="ed">
-         <button>Edit</button>
+         <button class="edit-btn">Edit</button>
          <a href="{% url 'logout' %}">logout</a>
       </div>
+      {% endif %}
        
       <img src="{{user.profile.profile_pic.url}}" alt="" class="profile_p">
-      <p>{{user.username}}</p>
+      <p class="uname">{{user.username}}</p>
+      <p class="bio">{{user.profile.bio}}</p>
      </div>
      <div class="hr"></div>
      <!-- end of user profile -->
@@ -43,7 +58,7 @@
              <a href="{{project.url}}" class="share"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
           </div>
           <div class="details">
-             <p>{{project.sitename}}</p>
+             <p class='country-ttl'>{{project.sitename}}</p>
               <div class="country">
                  <p>From {{project.country.name}}</p>
                  <p>{{project.date_submited | date:'F d, Y' }}</p>
@@ -74,7 +89,7 @@
             <a href="{{project.project.url}}" class="share"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
           </div>
           <div class="details">
-             <p>{{project.project.sitename}}</p>
+             <p class="country-ttl">{{project.project.sitename}}</p>
               <div class="country">
                  <p>From {{project.project.country.name}}</p>
                  <p>{{project.project.date_submited | date:'F d, Y' }}</p>
@@ -95,6 +110,9 @@
      </div>
 
 </div>
+
+
+
 
 
 
@@ -129,6 +147,55 @@ $(document).ready(function(){
    
 })
 </script>
+
+
+<script>
+   $(document).ready(function(){
+     $('#profile_form').submit(function(e){
+      e.preventDefault()
+      $form = $('#profile_form')
+      // var formData = new FormData(this)
+      $.ajax({
+         url:'/update/',
+         type:'post',
+         data:$form.serialize(),
+         dataType:'json',
+         processData: false, 
+         contentType: false, 
+         cache:false,
+
+         success:function(json){
+            // console.log(json['bio'])
+
+         // formDiv = document.querySelector('.form-div');
+         // formDiv.style.display = 'none';
+         // document.body.style.overflowY = 'scroll';
+         }
+
+      })
+       
+     })
+   })
+</script>
+
+<script>
+   formDiv = document.querySelector('.form-div');
+   form = document.querySelector('.form-div form');
+   showFormBtn = document.querySelector('.edit-btn')
+   hideFormBtn = document.querySelector('.hide');
+
+   showFormBtn.addEventListener('click',function(){
+      formDiv.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+   })
+   hideFormBtn.addEventListener('click',()=>{
+      formDiv.style.display = 'none';
+      document.body.style.overflowY = 'scroll';
+   })
+</script>
+
+
+
 
 
 

@@ -201,29 +201,43 @@ ratings.forEach((rating) => {
 
                   else{
                      
-                     old_vote = document.querySelector(`#user-${json['user']}`)
-                     old_vote.innerHTML = ''
+                     // old_vote = document.querySelector(`#user-${json['user']}`)
+                     // old_vote.innerHTML = ''
 
-                     old_vote.innerHTML =  `
-                        <div class="profile">
-                        <img src="${prof_image}" alt="" class="profile_pic">
-                        <div class="user-details">
-                           <p>${name}</p>
-                        </div>
-                        </div>
-                        <div class="average">
-                           <div class="ratings">
-                              <div class="rating design"><span>${json['design']}<span></div>
-                              <div class="rating usability"><span>${json['usability']}<span></div>
-                              <div class="rating content"><span>${json['content']}<span></div>
-                           </div>
-                           <p>${(json['average']).toFixed(2)}</p>
-                        </div>
-                     `
+                     // old_vote.innerHTML =  `
+                     //    <div class="profile">
+                     //    <img src="${prof_image}" alt="" class="profile_pic">
+                     //    <div class="user-details">
+                     //       <p>${name}</p>
+                     //    </div>
+                     //    </div>
+                     //    <div class="average">
+                     //       <div class="ratings">
+                     //          <div class="rating design"><span>${json['design']}<span></div>
+                     //          <div class="rating usability"><span>${json['usability']}<span></div>
+                     //          <div class="rating content"><span>${json['content']}<span></div>
+                     //       </div>
+                     //       <p>${(json['average']).toFixed(2)}</p>
+                     //    </div>
+                     // `
+                     old_vote_d = document.querySelector(`#user-${json['user']} .design span`)
+                     old_vote_u = document.querySelector(`#user-${json['user']} .usability span`)
+                     old_vote_c = document.querySelector(`#user-${json['user']} .content span`)
+                     av =document.querySelector(`#user-${json['user']} p`)
+                     old_vote_d.innerHTML = ''
+                     old_vote_c.innerHTML = ''
+                     old_vote_u.innerHTML = ''
+                     av.innerHTML = ''
+                     old_vote_d.innerHTML = json['design']
+                     old_vote_c.innerHTML = json['content']
+                     old_vote_u.innerHTML = json['usability']
+                     av.innerHTML = json['average'].toFixed(2)
+                    
+
                      
 
                       
-                        document.querySelector('.user-vote').classList.toggle('display-block')
+                     document.querySelector('.user-vote').classList.toggle('display-block')
                      alert('Your vote has been edited')
                      
                   }

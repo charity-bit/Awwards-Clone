@@ -5,7 +5,7 @@ from django import forms
 from django.forms.widgets import CheckboxSelectMultiple
 from django.forms.models import ModelMultipleChoiceField
 
-from awwards.models import Project,Category,Tags, Vote
+from awwards.models import Project,Category,Tags, Vote,Profile
 class CustomAuthForm(AuthenticationForm):  
     def __init__(self, *args, **kwargs):
         super(CustomAuthForm, self).__init__(*args, **kwargs)
@@ -51,5 +51,9 @@ class VoteForm(forms.ModelForm):
         fields = ['design','usability','content']
 
 
-
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio','profile_pic','country']
+        
 

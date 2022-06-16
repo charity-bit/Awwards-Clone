@@ -1,35 +1,24 @@
-from urllib import request
-from xxlimited import new
+
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect,get_object_or_404
-from django.core import serializers
+from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .forms import VoteForm 
 
-@login_required(login_url='/')
-def home(request):
-    if request.method == 'GET':
-        projects = Project.objects.all().order_by('-date_submited')
-        search_input = request.GET.get('search-area') or ''
-        if search_input:
-            projects = projects.filter(sitename__icontains= search_input)
-        
-from django.views.generic.edit import CreateView,UpdateView,DeleteView
-
-from django.urls import reverse_lazy
-from .forms import CustomAuthForm,RegistrationForm,ProjectForm
 from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
+from django.views.generic.edit import FormView
+from django.views.generic.edit import CreateView
 
+
+from .forms import CustomAuthForm,RegistrationForm,ProjectForm,ProfileForm,VoteForm
 from .models import Project,User,Profile, Vote
 
-from django.views.generic.edit import FormView
 
 
-# Create your views here.
+
 
 
 class CustomLoginView(LoginView):  
@@ -83,15 +72,16 @@ def home(request):
 def profile(request,username):
     user = get_object_or_404(User,username = username)
     projects = Project.objects.filter(user=request.user)
+    form = ProfileForm
 
     voted_objects = Vote.objects.filter(user = user).order_by('-date_voted').all()
 
     context={
         'projects':projects,
         'voted_objects':voted_objects,
-        'user':user
+        'user':user,
+        'form':form
     }
-
 
     return render(request,'awwards/profile.html',context)
 
@@ -154,8 +144,42 @@ def rate(request):
         return JsonResponse({'average':a_s,'design':d,'usability':u,'content':c,'state':state,'user':user})
 
 
+def update(request):
+    if request.method == 'POST':
+        profile = Profile.objects.filter(user=request.user)
+        if profile.exists:
+            profile.delete()
+            form = ProfileForm(request.POST,request.FILES)
+            if form.is_valid():
+                form.instance.user = request.user
+                print(form.cleaned_data['bio'])
+                form.save()
+                return JsonResponse({'errors':True})
+            else:
+                return JsonResponse({'errors':True})
+        else:
+            return JsonResponse({'none':'No such profile'})
+
+    else:
+        form = ProfileForm()
 
     
+    return JsonResponse({'saved':'saved'})
 
 
+# def update(request):
+#     bio = request.POST.get('bio')
+#     profile_image = request.FILES.get('profile_pic')
+#     country = request.POST.get('country')
 
+#     if Profile.objects.filter(user = request.user).exists():
+#         user_profile = Profile.objects.filter(user = request.user).first()
+#         if bio:
+#             user_profile.bio = bio
+#         if profile_image:
+#             user_profile.profile_pic = profile_image
+#         if country:
+#             user_profile.country = country
+#         user_profile.save()
+
+#     return JsonResponse({'success':True})
