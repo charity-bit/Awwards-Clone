@@ -48,7 +48,7 @@ display: flex;
     align-items: center;
     display: none;
     justify-content: center;
-    transition: transform 1s ease-in-out;
+    transition:all 1s ease-in-out;
     transform: translateX(-50%);
     height: 70%;
     width: 100%;
@@ -66,20 +66,14 @@ font-size: 1.1vw;
 .icons a:nth-child(2){
     color:white;
     text-decoration: none;
-    align-self: flex-end;
-    margin-right: 5%;
     border: 1px solid white;
     height: 32px;
+    margin-top: 4%;
     width: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    position: relative;
-    top:20%;
-
-
-    
+    border-radius: 50%;    
 }
 .details{
     background-color: white;
@@ -123,7 +117,7 @@ font-size: 1.1vw;
 }
 .hr{
     background-color: #dbe0df;
-    height: 1px;
+    height: 2px;
     width: 100%;
 }
 

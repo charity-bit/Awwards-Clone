@@ -25,7 +25,7 @@ html{
 }
 form a {
     color:white;
-    background-color: #080210;
+    /* background-color: #080210; */
 
 }
 .search-form input{
@@ -69,10 +69,9 @@ input:-webkit-autofill:active{
     align-items: center;
     background-color: #f4f7f6;
     padding: 0;
-    position: fixed;
+    position:sticky;
+    z-index: 1000;
     top:0;
-    right:0;
-    left:0;
 }
 .menu{
     color:#080210;
@@ -100,6 +99,7 @@ nav{
     height: 2vw;
     width: 15vw;
     animation: scaleIn 1s ease 0s 1 normal forwards;
+    align-self: center;
   
 }
 .search{
@@ -161,3 +161,4 @@ nav{
 		transform: scale(1);
 	}
 }
+

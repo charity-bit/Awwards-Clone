@@ -5,7 +5,9 @@ from cloudinary.models import CloudinaryField
 from django_countries.fields import CountryField
 from django.utils import timezone
 
-
+DESIGN_CHOICES = zip(range(1,11), range(1,11))
+USABILITY_CHOICES = zip(range(1,11), range(1,11))
+CONTENT_CHOICES = zip(range(1,11), range(1,11))
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -61,10 +63,13 @@ class Project(models.Model):
 class Vote(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     project = models.ForeignKey(Project,on_delete=models.CASCADE,related_name='vote')
+
+    design = models.IntegerField(default=0,choices=DESIGN_CHOICES)
+    usability = models.IntegerField(default=0,choices=USABILITY_CHOICES)
+    content = models.IntegerField(default=0,choices=CONTENT_CHOICES)
     average_score = models.DecimalField(max_digits=4,decimal_places=2)
     date_voted = models.DateTimeField(default=timezone.now)
-
-
+    
     def __str__(self):
         return f'{self.average_score}'
 

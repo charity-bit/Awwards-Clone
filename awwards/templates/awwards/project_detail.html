@@ -1,0 +1,173 @@
+{% extends 'awwards/base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'awwards/css/detail.css' %}">
+{% endblock %}
+
+
+<!-- body -->
+{% block content %}
+
+<hr>
+<div class="container">
+    <p class="vt">Vote / <span>{{project.sitename}}</span> from <span>{{project.country.name}}</span></p>
+   <div class="project-details">
+     <div class="project-image">
+        <img src="{{project.image.url}}" alt="" class="img">
+        <a href="{{project.url}}" class="icon"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path fill="currentColor" d="M754.553 35.03v294.208C487.317 329.246 0 332.178 0 1164.97c55.25-556.9 309.061-560.402 754.553-560.408v321.292L1200 480.407L754.553 35.03z"/></svg></a>
+        <div class="vt-txt">
+         <button id="id_vote"> VOTE NOW</button>    
+        </div>
+     </div>
+     <div class="dits">
+      <p class="sitename">{{project.sitename}}</p>
+      <p class="user">By <a href="{% url 'profile' user.username %}">{{project.user.username}} </a>({{project.country.name}})</p>
+      <p class="user">{{project.description}}</p>
+     </div>
+     <div class="tags">
+      {% if project.tags %}
+      {% for tag in project.tags.all %}
+      <div class="tag">
+         <p>{{tag.name}}</p>
+      </div>
+      
+      {% endfor %}
+      {% endif %}
+     </div>
+    
+   </div>
+
+   <div class="user-vote">
+      <form class="form" method="post" action="/sites/rate/">
+         {% csrf_token %}
+         {{form}}
+         <input class="sm"
+         type="submit" value="CONFIRM YOUR VOTE" data-project="{{project.id}}" data-user="{{request.user.id}}"id='vote-now'>
+      </form>
+   </div>
+   <div class="user-votes">
+      {% if project.vote.all %}
+      <p class="ttl">USER VOTES</p>
+      <div class="hr"></div>
+       {% for vote in project.vote.all %}
+       <div class="vote">
+         <div class="profile">
+         <img src="{{vote.user.profile.profile_pic.url}}" alt="" class="profile_pic">
+         <div class="user-details">
+            <p>{{vote.user.username}}</p>
+         </div>
+         </div>
+         <div class="average">
+            <div class="ratings">
+               <div class="rating design">{{vote.design}}</div>
+               <div class="rating usability">{{vote.usability}}</div>
+               <div class="rating content">{{vote.content}}</div>
+            </div>
+            <p>{{vote.average_score}}</p>
+         </div>
+       </div>
+       <div class="hr"></div>
+       {% endfor %}
+      {% endif %}
+
+
+
+   </div>
+   <div class="credits">
+      <p class="ttl">CREDITS</p>
+      <div class="hr"></div>
+      <div class="vote">
+         <div class="profile">
+         <img src="https://res.cloudinary.com/dvhid4k2j/image/upload/v1654654901/png_rxb8cy.jpg" alt="" class="profile_pic">
+            <div class="user-details">
+            <p class="nm">{{project.designer_name}}</p>
+            <p>{{project.designer_url}}</p>
+            </div>
+         </div>
+      </div>
+
+
+   </div>
+   
+
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
+<script>
+
+
+// Find al rating items
+const ratings = document.querySelectorAll(".rating");
+
+
+ratings.forEach((rating) => {
+ 
+  const ratingContent = rating.innerHTML;
+  const ratingScore = (parseInt(ratingContent)/10) * 100;
+
+  const ratingColor = window.getComputedStyle(rating).backgroundColor;
+  
+  
+  const bg = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+  rating.setAttribute("style",bg);
+
+  //show text 
+  rating.innerHTML = `<span>${ratingScore / 10}</span>`;
+
+});
+
+</script>
+
+
+<script>
+   $(document).ready(function(){
+          $('#id_vote').on('click',()=>{
+            document.querySelector('.user-vote').classList.toggle('display-block')
+          })
+   
+        $('.sm').on('click',function(e){
+         e.preventDefault()
+         design = document.querySelector("select[name='design']").value;
+         usability = document.querySelector("select[name='usability']").value
+         content =  document.querySelector("select[name='content']").value
+   
+         project = $(this).data('project')
+         user = $(this).data('user')
+         form = $('.form')
+
+
+         $.ajax({
+            url:'/sites/rate/',
+            type:'post',
+            data:{
+               project:project,
+               design:design,
+               usability:usability,
+               content:content,
+               user:user,
+               csrfmiddlewaretoken:"{{csrf_token}}",
+
+            },
+            dataType:'json',
+            success:function(json){
+               console.log(json['name'])
+            }
+         })
+        })
+
+
+   })
+
+</script>
+{% endblock %}
+

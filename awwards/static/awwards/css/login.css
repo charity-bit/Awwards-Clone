@@ -75,8 +75,7 @@ input[type='text'],input[type='password']{
     padding: 4% 2%;
     border: 1px solid #dbe0df;
     outline: none;
-    font-size: 1vw;
-    
+    font-size: 1vw;  
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -167,6 +166,7 @@ background-color: #44b4a6;
     background-color: #325595; 
     color:white;
 }
+
 
 
 

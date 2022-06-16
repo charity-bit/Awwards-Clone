@@ -1,15 +1,27 @@
 from urllib import request
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect,get_object_or_404
+from django.core import serializers
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from .forms import VoteForm 
 
+@login_required(login_url='/')
+def home(request):
+    if request.method == 'GET':
+        projects = Project.objects.all().order_by('-date_submited')
+        search_input = request.GET.get('search-area') or ''
+        if search_input:
+            projects = projects.filter(sitename__icontains= search_input)
+        
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 
 from django.urls import reverse_lazy
 from .forms import CustomAuthForm,RegistrationForm,ProjectForm
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
 from .models import Project,User,Profile, Vote
 
@@ -58,7 +70,6 @@ def home(request):
         if search_input:
             projects = projects.filter(sitename__icontains= search_input)
         
-        
         user = request.user
     context = {
         'projects':projects,
@@ -73,7 +84,6 @@ def profile(request,username):
     projects = Project.objects.filter(user=request.user)
 
     voted_objects = Vote.objects.filter(user = user).order_by('-date_voted').all()
-    
 
     context={
         'projects':projects,
@@ -103,8 +113,49 @@ class AddProjectView(LoginRequiredMixin,CreateView):
 
 class ProjectDetailsView(LoginRequiredMixin,DetailView):
     model = Project
-    template_name = 'awwards/project_detail'
+    template_name = 'awwards/project_detail.html'
     context_object_name = 'project'
+    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = VoteForm()
+
+        return context
+  
+
+def rate(request):
+
+        if request.method == 'POST':
+            state = 0
+            project_id = request.POST.get('project')
+            project = Project.objects.filter(id = project_id).first()
+            user_id = request.user
+
+            if Vote.objects.filter(project = project,user = request.user).exists():
+                Vote.objects.filter(project = project,user = request.user).delete()
+                design = request.POST.get('design')
+                usability = request.POST.get('usability')
+                content = request.POST.get('content')
+                average = (int(design)+int(usability)+int(content))/3
+                
+             
+            else:
+                design = request.POST.get('design')
+                usability = request.POST.get('usability')
+                content = request.POST.get('content')
+                average = (int(design)+int(usability)+int(content))/3
+            new_vote = Vote(user = request.user,project=project,average_score = average,design = int(design),usability=int(usability),content=int(content))
+            new_vote.save()
+                
+           
+        
+
+        return JsonResponse({})
+
+
+
+    
 
 
 
