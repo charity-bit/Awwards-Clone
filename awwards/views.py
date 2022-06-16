@@ -134,23 +134,24 @@ def rate(request):
             user_id = request.user
 
             if Vote.objects.filter(project = project,user = request.user).exists():
+                Vote.objects.filter(project = project,user = request.user).delete()
                 state = 0     
             else:
                 state = 1
-                design = request.POST.get('design')
-                usability = request.POST.get('usability')
-                content = request.POST.get('content')
-                average_s = (int(design)+int(usability)+int(content))/3
-                new_vote = Vote(user = request.user,project=project,average_score = average_s,design = int(design),usability=int(usability),content=int(content))
-                new_vote.save()
-            vt = Vote.objects.filter(project = project,user = request.user).first()
-            if vt:
-                average_score = vt.average_score
-                design = vt.design
-                usability = vt.usability
-                content = vt.content
+            design = request.POST.get('design')
+            usability = request.POST.get('usability')
+            content = request.POST.get('content')
+            average_s = (int(design)+int(usability)+int(content))/3
+            new_vote = Vote(user = request.user,project=project,average_score = average_s,design = int(design),usability=int(usability),content=int(content))
+            new_vote.save()
+            
+            a_s = new_vote.average_score
+            d = new_vote.design
+            u = new_vote.usability
+            c = new_vote.content
+            user = request.user.id
 
-        return JsonResponse({'average':average_score,'design':design,'usability':usability,'content':content,'state':state})
+        return JsonResponse({'average':a_s,'design':d,'usability':u,'content':c,'state':state,'user':user})
 
 
 

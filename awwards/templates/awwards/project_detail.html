@@ -52,7 +52,7 @@
       <div class="hr"></div>
       {% if project.vote.all %}
        {% for vote in project.vote.all %}
-       <div class="vote">
+       <div class="vote" id="user-{{vote.user.id}}">
          <div class="profile">
          <img src="{{vote.user.profile.profile_pic.url}}" alt="" class="profile_pic">
          <div class="user-details">
@@ -175,7 +175,7 @@ ratings.forEach((rating) => {
             success:function(json){
                if (json['state'] == 1) {
               
-                           html =  `<div class="vote">
+                           html =  `<div class="vote" id='#user-${json['user']}'>
                         <div class="profile">
                         <img src="${prof_image}" alt="" class="profile_pic">
                         <div class="user-details">
@@ -188,7 +188,7 @@ ratings.forEach((rating) => {
                               <div class="rating usability"><span>${json['usability']}<span></div>
                               <div class="rating content"><span>${json['content']}<span></div>
                            </div>
-                           <p>${json['average']}</p>
+                           <p>${(json['average']).toFixed(2)}</p>
                         </div>
                      </div>`
 
@@ -200,8 +200,31 @@ ratings.forEach((rating) => {
                   }
 
                   else{
-                     document.querySelector('.user-vote').classList.toggle('display-block')
-                     alert('sorry, You already voted.You cannot vote twice')
+                     
+                     old_vote = document.querySelector(`#user-${json['user']}`)
+                     old_vote.innerHTML = ''
+
+                     old_vote.innerHTML =  `
+                        <div class="profile">
+                        <img src="${prof_image}" alt="" class="profile_pic">
+                        <div class="user-details">
+                           <p>${name}</p>
+                        </div>
+                        </div>
+                        <div class="average">
+                           <div class="ratings">
+                              <div class="rating design"><span>${json['design']}<span></div>
+                              <div class="rating usability"><span>${json['usability']}<span></div>
+                              <div class="rating content"><span>${json['content']}<span></div>
+                           </div>
+                           <p>${(json['average']).toFixed(2)}</p>
+                        </div>
+                     `
+                     
+
+                      
+                        document.querySelector('.user-vote').classList.toggle('display-block')
+                     alert('Your vote has been edited')
                      
                   }
 

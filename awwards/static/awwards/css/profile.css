@@ -71,6 +71,21 @@ body{
     font-size: 1.1vw;
     }
 
+
+
+    /* edit btn */
+
+    .ed{
+        display: flex;
+        align-self: flex-start;
+        border: 1px solid #111;
+        background-color: transparent;
+        font-weight: 300;
+        padding: .8% 2%;
+        border-radius: 17px;
+    }
+
+    /* end of edit btn */
     
     .share{
         color:white;
