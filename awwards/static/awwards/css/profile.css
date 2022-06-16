@@ -245,9 +245,14 @@ body{
 .bio{
     font-size: .8vw;
     font-weight: 300;
+  
+
+    
 }
 .uname{
+
     font-size: 1.2vw;
+    margin-top: 1%;
 }
 .country-ttl{
     font-size: 1.3vw;

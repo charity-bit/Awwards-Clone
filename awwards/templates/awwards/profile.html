@@ -36,6 +36,7 @@
       <img src="{{user.profile.profile_pic.url}}" alt="" class="profile_p">
       <p class="uname">{{user.username}}</p>
       <p class="bio">{{user.profile.bio}}</p>
+      <p class="u_c">{{user.profile.country.name}}</p>
      </div>
      <div class="hr"></div>
      <!-- end of user profile -->
@@ -151,25 +152,36 @@ $(document).ready(function(){
 
 <script>
    $(document).ready(function(){
+      csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value
      $('#profile_form').submit(function(e){
       e.preventDefault()
-      $form = $('#profile_form')
-      // var formData = new FormData(this)
+      // form = $('#profile_form')
+      var formData = new FormData(this)
       $.ajax({
          url:'/update/',
          type:'post',
-         data:$form.serialize(),
+         csrfmiddlewaretoken:csrfToken,
+         data:formData,
          dataType:'json',
          processData: false, 
          contentType: false, 
          cache:false,
 
          success:function(json){
-            // console.log(json['bio'])
-
-         // formDiv = document.querySelector('.form-div');
-         // formDiv.style.display = 'none';
-         // document.body.style.overflowY = 'scroll';
+           
+            // console.log()
+           bioText =  document.querySelector('.bio')
+           bioText.innerHTML  = json['bio']
+           c_Text =  document.querySelector('.u_c')
+           c_Text.innerHTML  = json['country_']
+           
+         //   hide update profile form
+        
+            formDiv = document.querySelector('.form-div');
+           formDiv.style.display = 'none';
+           document.body.style.overflowY = 'scroll';
+         
+           
          }
 
       })

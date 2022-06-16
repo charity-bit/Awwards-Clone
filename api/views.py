@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from rest_framework.response import Response
 from rest_framework import status,generics
 from rest_framework.decorators import api_view,APIView
@@ -25,6 +25,7 @@ def get_projects_data(request):
 
 @api_view(['GET', 'POST'])
 def get_profiles_data(request):
+
     
     method = request.method
     if method == 'GET':

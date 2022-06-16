@@ -1,3 +1,4 @@
+import pathlib
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect,get_object_or_404
@@ -143,43 +144,29 @@ def rate(request):
 
         return JsonResponse({'average':a_s,'design':d,'usability':u,'content':c,'state':state,'user':user})
 
-
+@csrf_exempt
 def update(request):
     if request.method == 'POST':
-        profile = Profile.objects.filter(user=request.user)
-        if profile.exists:
-            profile.delete()
-            form = ProfileForm(request.POST,request.FILES)
-            if form.is_valid():
-                form.instance.user = request.user
-                print(form.cleaned_data['bio'])
-                form.save()
-                return JsonResponse({'errors':True})
-            else:
-                return JsonResponse({'errors':True})
-        else:
-            return JsonResponse({'none':'No such profile'})
+        bio = request.POST.get('bio')
+        
+       
+        country = request.POST.get('country')
 
-    else:
-        form = ProfileForm()
+        if Profile.objects.filter(user = request.user).exists():
+            user_profile = Profile.objects.filter(user = request.user).first()
+            if bio:
+                user_profile.bio = bio
+           
+            if country:
+                user_profile.country = country
+            user_profile.save()
+        
+
+
+    return JsonResponse({'bio':user_profile.bio,'country_':user_profile.country.name})
+        
+
+   
 
     
-    return JsonResponse({'saved':'saved'})
-
-
-# def update(request):
-#     bio = request.POST.get('bio')
-#     profile_image = request.FILES.get('profile_pic')
-#     country = request.POST.get('country')
-
-#     if Profile.objects.filter(user = request.user).exists():
-#         user_profile = Profile.objects.filter(user = request.user).first()
-#         if bio:
-#             user_profile.bio = bio
-#         if profile_image:
-#             user_profile.profile_pic = profile_image
-#         if country:
-#             user_profile.country = country
-#         user_profile.save()
-
-#     return JsonResponse({'success':True})
+    

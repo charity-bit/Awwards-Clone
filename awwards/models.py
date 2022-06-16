@@ -5,13 +5,25 @@ from cloudinary.models import CloudinaryField
 from django_countries.fields import CountryField
 from django.utils import timezone
 
+from random import randint
+
 DESIGN_CHOICES = zip(range(1,11), range(1,11))
 USABILITY_CHOICES = zip(range(1,11), range(1,11))
 CONTENT_CHOICES = zip(range(1,11), range(1,11))
+profile_pics = [
+    'https://res.cloudinary.com/dvhid4k2j/image/upload/v1655073458/px6e6mggnblfxey90w3j.jpg',
+    'https://res.cloudinary.com/dvhid4k2j/image/upload/v1655419775/Snapchat-667489474_tywlo1.jpg',
+    'https://res.cloudinary.com/dvhid4k2j/image/upload/v1655419777/1-10012_kitten-cute-cats-orange-tabby-cat-baby_pj3bnp.jpg',
+    'https://res.cloudinary.com/dvhid4k2j/image/upload/v1655420581/davisuko-5E5N49RWtbA-unsplash_d8yuyx.jpg',
+    'https://res.cloudinary.com/dvhid4k2j/image/upload/v1655420670/ian-schneider-TamMbr4okv4-unsplash_fgs9ua.jpg',
+    'https://res.cloudinary.com/dvhid4k2j/image/upload/v1655420766/annie-spratt-0ZPSX_mQ3xI-unsplash_s1pxcj.jpg'
+
+]
+random_pic = profile_pics[randint(0,len(profile_pics) - 1)]
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    profile_pic = CloudinaryField('profile_image',default='https://res.cloudinary.com/dvhid4k2j/image/upload/v1654654901/png_rxb8cy.jpg')
+    profile_pic = CloudinaryField('profile_image',default=random_pic)
     bio = models.CharField(max_length=150,blank=True)
     country = CountryField(blank=True,null=True)
 

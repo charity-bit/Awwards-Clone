@@ -54,6 +54,6 @@ class VoteForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio','profile_pic','country']
+        fields = ['bio','country']
         
 
