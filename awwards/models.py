@@ -30,6 +30,9 @@ class Profile(models.Model):
     def __str__(self) -> str:
         return f'{self.user.username}'
 
+    def save_profile(self):
+        self.save()
+
 class Category(models.Model):
     name = models.CharField(max_length=150)
 
@@ -64,6 +67,9 @@ class Project(models.Model):
     date_submited = models.DateTimeField(default=timezone.now)
     rank = models.BigIntegerField(null=True,blank=True) 
     country = CountryField()
+
+    def save_project(self):
+        self.save()
 
 
 
