@@ -13,7 +13,6 @@ A website appplication built using python <a href='https://docs.djangoproject.co
 
 ## Table of Content
 - [Prequisite](#prequisite)
-- [Application Structure](#application-structure)
 - [Installation Requirement](#Installation)
 - [Technology Used](#technology-used)
 - [Demo](#demo)
@@ -26,22 +25,6 @@ A website appplication built using python <a href='https://docs.djangoproject.co
 
 <br>
 
-## Application Structure
-
-The application uses Django's MVT (Model-View-Template) architecture which is a software design pattern for developing a web application. 
-
-<strong>Model </strong> - The model is going to act as the interface of your data. It is responsible for maintaining data. It is the logical data structure behind the entire application and is represented by a database (generally relational databases such as MySql, Postgres). <a href='https://docs.djangoproject.com/en/4.0/topics/db/models/'>Django Models</a>
-
-<br>
-
-<strong> View </strong> -  a view is called that interact with model and template, it renders a template <a href='https://docs.djangoproject.com/en/4.0/topics/http/views/'> Django views</a>
-
-<strong> Template </strong> -  A template consists of static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted.<a href='https://docs.djangoproject.com/en/4.0/topics/templates/'> Django templates </a>
-
-## File Structure
-
-<img src='./images/structure.png'>
-<br>
 
 ## Installation
 
@@ -51,7 +34,7 @@ The application uses Django's MVT (Model-View-Template) architecture which is a 
 
 
 ```
-$ git clone https://github.com/charity-bit/Instagram-Clone
+$ git clone https://github.com/charity-bit/Awwards-Clone
 $ python3 -m venv virtual 
 $ pip install -r requirements.txt
 $ pip list 
@@ -124,47 +107,9 @@ Ajax and Jquery
 
 <br>
 
-## Demo
-
-<h4> Timeline </h4>
-
-<img src="./images/timeline.png">
-
-<br>
-
-<h4> Explore </h4>
-
-<img src="./images/explore.png">
-
-<br>
-
-<h4> Add Post </h4>
-
-<img src="./images/post.png">
-
-<br>
-
-<h4> Add Comment </h4>
-
-<img src="./images/comment.png">
-
-<br>
-
-<h4>User Profiles </h4>
-
-<img src="./images/user_profile.png">
-
-<br>
-
-<img src="./images/follow.png">
-
-
-
-
-
 ## Licence
 
-   copyright © Charity 2022 - <a href="https://github.com/charity-bit/Instagram-Clone/blob/main/LICENSE"> MIT </a>
+   copyright © Charity 2022 - <a href=""> MIT </a>
 
 ## Authors Info
 

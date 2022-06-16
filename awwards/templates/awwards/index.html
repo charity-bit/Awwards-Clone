@@ -32,8 +32,8 @@
         </div>
         <div class="hr"></div>
         <div class="dev">
-            <a href=""><img src="{{project.user.profile.profile_pic.url}}" alt="" class="profile_pic"></a>
-            <a href="#">By <span>{{project.user.username}}</span>
+            <a href="{% url 'profile' project.user.username %}"><img src="{{project.user.profile.profile_pic.url}}" alt="" class="profile_pic"></a>
+            <a href="{% url 'profile' project.user.username %}">By <span>{{project.user.username}}</span>
             </a>
            
         </div>

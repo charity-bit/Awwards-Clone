@@ -42,8 +42,10 @@
      <!-- end of user profile -->
      <div class="project-toggler">  
         <p id="projects">{{projects.count}}{% if projects.count > 1 %} Projects {% else %} Project {% endif %} </p>
+        {% if request.user == user %}
         <p id='voted'>{{voted_objects| length}}{% if voted_objects.count > 1 %} Votes {% else %} Vote {% endif %} </p>
-     </div>
+        {% endif %}
+      </div>
      <div class="items">
       <div class="projects">
          {% for project in projects %}
@@ -78,6 +80,7 @@
          {% endfor %}
       </div>
 
+      {% if request.user == user %}
       <div class="voted">
          {% for project in voted_objects %}
         
@@ -108,6 +111,8 @@
          {% endfor %}
        
       </div>
+
+      {% endif %}
      </div>
 
 </div>
