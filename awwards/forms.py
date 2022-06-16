@@ -51,3 +51,5 @@ class VoteForm(forms.ModelForm):
         fields = ['design','usability','content']
 
 
+
+

@@ -14,7 +14,11 @@
 <div class="container">
    <!-- user profile -->
      <div class="prof-cont">
-       <button class="ed">Edit</button>
+      <div class="ed">
+         <button>Edit</button>
+         <a href="{% url 'logout' %}">logout</a>
+      </div>
+       
       <img src="{{user.profile.profile_pic.url}}" alt="" class="profile_p">
       <p>{{user.username}}</p>
      </div>
