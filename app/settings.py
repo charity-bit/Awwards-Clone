@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'awwards.apps.AwwardsConfig',
     'cloudinary',
     'django_countries',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
