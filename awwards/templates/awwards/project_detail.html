@@ -47,9 +47,10 @@
       </form>
    </div>
    <div class="user-votes">
-      {% if project.vote.all %}
+      
       <p class="ttl">USER VOTES</p>
       <div class="hr"></div>
+      {% if project.vote.all %}
        {% for vote in project.vote.all %}
        <div class="vote">
          <div class="profile">
@@ -107,6 +108,7 @@
 
 
 // Find al rating items
+
 const ratings = document.querySelectorAll(".rating");
 
 
@@ -130,7 +132,18 @@ ratings.forEach((rating) => {
 
 
 <script>
+
+
+
+
+
+
    $(document).ready(function(){
+
+
+           prof_image = document.querySelector('.prof img').src
+           name = document.querySelector('.prof p').textContent
+           url = document.querySelector('.profile').href
           $('#id_vote').on('click',()=>{
             document.querySelector('.user-vote').classList.toggle('display-block')
           })
@@ -160,12 +173,41 @@ ratings.forEach((rating) => {
             },
             dataType:'json',
             success:function(json){
-               console.log(json['name'])
+               if (json['state'] == 1) {
+              
+                           html =  `<div class="vote">
+                        <div class="profile">
+                        <img src="${prof_image}" alt="" class="profile_pic">
+                        <div class="user-details">
+                           <p>${name}</p>
+                        </div>
+                        </div>
+                        <div class="average">
+                           <div class="ratings">
+                              <div class="rating design"><span>${json['design']}<span></div>
+                              <div class="rating usability"><span>${json['usability']}<span></div>
+                              <div class="rating content"><span>${json['content']}<span></div>
+                           </div>
+                           <p>${json['average']}</p>
+                        </div>
+                     </div>`
+
+                      
+                     //  append to user votes
+                        $('.user-votes').append(html)
+                        document.querySelector('.user-vote').classList.toggle('display-block')
+                            
+                  }
+
+                  else{
+                     document.querySelector('.user-vote').classList.toggle('display-block')
+                     alert('sorry, You already voted.You cannot vote twice')
+                     
+                  }
+
             }
          })
         })
-
-
    })
 
 </script>

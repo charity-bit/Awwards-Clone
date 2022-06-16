@@ -1,4 +1,5 @@
 from urllib import request
+from xxlimited import new
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect,get_object_or_404
 from django.core import serializers
@@ -133,25 +134,23 @@ def rate(request):
             user_id = request.user
 
             if Vote.objects.filter(project = project,user = request.user).exists():
-                Vote.objects.filter(project = project,user = request.user).delete()
-                design = request.POST.get('design')
-                usability = request.POST.get('usability')
-                content = request.POST.get('content')
-                average = (int(design)+int(usability)+int(content))/3
-                
-             
+                state = 0     
             else:
+                state = 1
                 design = request.POST.get('design')
                 usability = request.POST.get('usability')
                 content = request.POST.get('content')
-                average = (int(design)+int(usability)+int(content))/3
-            new_vote = Vote(user = request.user,project=project,average_score = average,design = int(design),usability=int(usability),content=int(content))
-            new_vote.save()
-                
-           
-        
+                average_s = (int(design)+int(usability)+int(content))/3
+                new_vote = Vote(user = request.user,project=project,average_score = average_s,design = int(design),usability=int(usability),content=int(content))
+                new_vote.save()
+            vt = Vote.objects.filter(project = project,user = request.user).first()
+            if vt:
+                average_score = vt.average_score
+                design = vt.design
+                usability = vt.usability
+                content = vt.content
 
-        return JsonResponse({})
+        return JsonResponse({'average':average_score,'design':design,'usability':usability,'content':content,'state':state})
 
 
 
