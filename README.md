@@ -20,7 +20,7 @@ A website appplication built using python <a href='https://docs.djangoproject.co
 - [Prequisite](#prequisite)
 - [Installation Requirement](#Installation)
 - [Technology Used](#technology-used)
-- [Demo](#demo)
+- [API Endpoints](#api-endpoints)
 - [Licence](#licence)
 - [Authors Info](#author-Info)
 
@@ -111,6 +111,31 @@ Ajax and Jquery
 </ul>
 
 <br>
+
+
+## API Endpoints
+
+<code> GET '/api/projects/'</code>
+- get information about all projects
+- supports POST requests
+
+<br>
+
+<code> GET '/api/profiles/'</code>
+
+- get information about all profiles
+- supports POST requests.
+
+
+<code> GET '/api/profile/{profile_id}/'</code>
+
+- get primary information about a single profile.
+
+<code> GET '/api/project/{project_id}/'</code>
+
+- get primary information about a single project.
+
+
 
 ## Licence
 
