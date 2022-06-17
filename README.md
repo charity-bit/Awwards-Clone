@@ -1,11 +1,11 @@
-#awwards
+# awwards
 
 <img src='./images/home.png'>
 
 <br>
 
 A website appplication built using python <a href='https://docs.djangoproject.com/en/4.0/'>(Django)</a> that allows  users to
-<a href='https://ins-ta.herokuapp.com/'>Live site</a> 
+<a href='https://aww-ards.herokuapp.com/'>Live site</a> 
 
 <ol>
 <li> Post Projects</li>
@@ -108,6 +108,7 @@ CSS
 <li>
 Ajax and Jquery
 </li>
+ <li>Django Rest Framework</li>
 </ul>
 
 <br>
