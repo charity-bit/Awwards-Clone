@@ -44,6 +44,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # Application definition
 
 INSTALLED_APPS = [
+     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,7 +54,7 @@ INSTALLED_APPS = [
     'awwards.apps.AwwardsConfig',
     'cloudinary',
     'django_countries',
-    'rest_framework',
+   
 ]
 
 MIDDLEWARE = [
