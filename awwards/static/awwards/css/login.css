@@ -172,21 +172,64 @@ background-color: #44b4a6;
 
 
 
-@media screen and (min-width:300px) and (max-width:500px) {
-    .forgot-p{
+@media screen and (max-width:700px) {
+  
+    .left{
+        display: none;
+    }
+
+    .right{
+        width:100%
+    }
+    input[type='text'],input[type='password'],
+    input[type='text']:focus,input[type='password']:focus{
+    
+    font-size: 2.5vw;  
+    }
+    .in p,.or p{
+        font-size: 2vw !important;
+    }
+
+    input[type='submit'],.icons a {
+
+    font-size: 1.7vw;
+
+    }
+
+ .forgot-p a{
+   
+    font-size: 1.3vw; 
+  }
+
+
+}
+
+@media screen and (min-width:601px) and (max-width:900px) {
+    ul{
+        list-style: none;
         font-size: 1.5vw;
     }
 
-    .in,input,ul.or p:nth-child(1){
-        font-size: 2.1vw;
-    }
-    
-}
 
-@media screen and (min-width:501px) and (max-width:720px) {
-    ul{
-        list-style: none;
-        font-size: 2vw;
+    input[type='text'],input[type='password'],
+    input[type='text']:focus,input[type='password']:focus{
+    
+    font-size: 2vw;  
     }
+    .in p,.or p{
+        font-size: 1.1vw !important;
+    }
+
+    input[type='submit'],.icons a {
+
+    font-size: 1.4vw;
+
+    }
+
+ .forgot-p a{
+   
+    font-size: 1.3vw; 
+  }
+
   
 }
