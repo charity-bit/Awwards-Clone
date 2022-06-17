@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'awwards.apps.AwwardsConfig',
     'cloudinary',
+    'django_countries',
     'rest_framework',
 ]
 
