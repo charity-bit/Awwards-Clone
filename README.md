@@ -5,7 +5,7 @@
 <br>
 
 A website appplication built using python <a href='https://docs.djangoproject.com/en/4.0/'>(Django)</a> that allows  users to
-<a href='https://aww-ards.herokuapp.com/'>Live site</a> 
+
 
 <ol>
 <li> Post Projects</li>
@@ -14,6 +14,8 @@ A website appplication built using python <a href='https://docs.djangoproject.co
 <li> Rate the projects by other users and have them appear in their profiles</li>
 <li> View other people's profiles and the projects they have posted</li>
 <ol>
+ 
+See Live site <a href='https://aww-ards.herokuapp.com/'>here</a> 
 <br>
 
 ## Table of Content
@@ -140,7 +142,7 @@ Ajax and Jquery
 
 ## Licence
 
-   copyright © Charity 2022 - <a href=""> MIT </a>
+   copyright © Charity 2022 - <a href="https://github.com/charity-bit/Awwards-Clone/blob/main/LICENSE"> MIT </a>
 
 ## Authors Info
 
