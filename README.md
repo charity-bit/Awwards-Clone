@@ -1,9 +1,14 @@
 #awwards
+
+<img src='./images/home.png'>
+
+<br>
+
 A website appplication built using python <a href='https://docs.djangoproject.com/en/4.0/'>(Django)</a> that allows  users to
 <a href='https://ins-ta.herokuapp.com/'>Live site</a> 
 
 <ol>
-<li> Post Projects/li>
+<li> Post Projects</li>
 <li> View Projects posted by other people</li>
 <li> Update their Profile</li>
 <li> Rate the projects by other users and have them appear in their profiles</li>
